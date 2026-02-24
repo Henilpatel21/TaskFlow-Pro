@@ -29,8 +29,8 @@ export const generateTokens = (userId) => {
 // Cookie options for refresh token
 export const getRefreshTokenCookieOptions = () => ({
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production' || process.env.COOKIE_SECURE === 'true',
-  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  secure: true, // MUST be true in production
+  sameSite: "none", // required for cross-domain
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   path: '/',
 });
