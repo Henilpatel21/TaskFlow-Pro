@@ -138,8 +138,8 @@ export const logout = asyncHandler(async (req, res) => {
   // Clear cookie
   res.clearCookie('refreshToken', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: true, // MUST be true in production
+    sameSite:  'none',
   });
 
   res.json({ message: 'Logged out successfully' });
