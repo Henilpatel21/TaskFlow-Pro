@@ -39,25 +39,24 @@ app.use(helmet());
 
 // CORS configuration
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  process.env.FRONTEND_URL
-];
-
 const corsOptions = {
   origin: function (origin, callback) {
-    // allow requests with no origin (Postman, mobile apps)
+    // allow requests with no origin (mobile apps, Postman)
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+    // allow localhost
+    if (origin.includes("localhost")) {
+      return callback(null, true);
     }
+
+    // allow all vercel domains
+    if (origin.includes("vercel.app")) {
+      return callback(null, true);
+    }
+
+    callback(null, true); // temporary allow all for debugging
   },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
