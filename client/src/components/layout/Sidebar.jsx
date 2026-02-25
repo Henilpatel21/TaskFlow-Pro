@@ -129,6 +129,7 @@ export default function Sidebar({ onCreateTeam }) {
       <div className="p-4 border-t border-gray-200">
         <Dropdown
           align="left"
+          direction="up"
           trigger={
             <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors">
               <Avatar name={user?.name} size="sm" />
