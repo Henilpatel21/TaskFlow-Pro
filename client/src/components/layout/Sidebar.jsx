@@ -54,6 +54,7 @@ export default function Sidebar({ onCreateTeam }) {
       <div className="p-4 border-b border-gray-200">
         <Dropdown
           align="left"
+          direction="up"
           trigger={
             <button className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-gray-100 transition-colors">
               <div className="flex items-center gap-2 min-w-0">

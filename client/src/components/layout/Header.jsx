@@ -21,7 +21,7 @@ function Header({ title, onShowShortcuts }, ref) {
   }));
   const { notifications, unreadCount, markAsRead, markAllAsRead } =
     useNotificationStore();
-  const { isGuest, user } = useAuthStore();
+  const { user } = useAuthStore();
   const { setFilters } = useTaskStore();
 
   const handleSearch = (e) => {
@@ -44,26 +44,6 @@ function Header({ title, onShowShortcuts }, ref) {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
-          {/* Guest user - Show Login/Signup buttons */}
-          {(isGuest || user?.isGuest) && (
-            <div className="flex items-center gap-2 mr-2">
-              <Link
-                to="/login"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <LogIn className="w-4 h-4" />
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
-              >
-                <UserPlus className="w-4 h-4" />
-                Sign Up
-              </Link>
-            </div>
-          )}
-
           {/* Search */}
           <form onSubmit={handleSearch} className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />

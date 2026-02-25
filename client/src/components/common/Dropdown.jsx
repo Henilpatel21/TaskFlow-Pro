@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-export default function Dropdown({ trigger, children, align = 'right' }) {
+export default function Dropdown({ trigger, children, align = 'right', direction = 'down' }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -19,6 +19,10 @@ export default function Dropdown({ trigger, children, align = 'right' }) {
     left: 'left-0',
     right: 'right-0',
   };
+  const directionClasses = {
+    down: 'mt-2',
+    up: 'mb-2 bottom-full',
+  };
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -27,9 +31,9 @@ export default function Dropdown({ trigger, children, align = 'right' }) {
       {isOpen && (
         <div
           className={`
-            absolute z-50 mt-2 w-48 rounded-lg
+            absolute z-50 w-48 rounded-lg
             bg-white shadow-lg border border-gray-200
-            py-1 ${alignmentClasses[align]}
+            py-1 ${alignmentClasses[align]} ${directionClasses[direction]}
           `}
         >
           {typeof children === 'function'
